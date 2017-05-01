@@ -38,9 +38,10 @@ var min_points = 3;
 var max_points = 100000;
 var min_size = 30;
 var max_size = 10000;
-var max_phase = 360;
 var max_wheel_size = 1000;
 var min_wheel_size = -1000;
+var max_wheel_phase = 360;
+var min_wheel_phase = -360;
 var max_thickness = 300;
 var save_table = "";
 var polarize = true;
@@ -409,7 +410,7 @@ Spirograph.prototype.SetWheelRate = function (wheel, delta)
 Spirograph.prototype.SetWheelPhase = function (wheel, delta)
 {
 	this.wheel_phases[wheel] += delta;
-	if(this.wheel_phases[wheel] <= max_wheel_ph)
+
 	
 	document.getElementById("wheelPhase_change" + wheel).value = this.wheel_phases[wheel];
 	
@@ -424,6 +425,12 @@ Spirograph.prototype.Animate = function ()
     {
 		if(document.getElementById("animate"+ (wheel+1)).checked == true)
 		{
+		
+		    if((this.wheel_phases[wheel] >= max_wheel_phase) || this.wheel_phases[wheel] <= min_wheel_phase)
+				{
+					this.phase_deltas[wheel] *= -1;
+				}
+				
 			this.SetWheelPhase (wheel, this.phase_deltas [wheel]);
 			document.getElementById("wheelPhase_change" + wheel).value = spirograph.wheel_phases[wheel];
 		}
