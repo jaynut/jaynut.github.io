@@ -38,6 +38,7 @@ var min_points = 3;
 var max_points = 100000;
 var min_size = 30;
 var max_size = 10000;
+var max_phase = 360;
 var max_wheel_size = 1000;
 var min_wheel_size = -1000;
 var max_thickness = 300;
@@ -49,7 +50,7 @@ var polarize = true;
 function Spirograph ()
 {
     this.num_wheels = 5;
-    this.num_points = 50000;
+    this.num_points = 5000;
     this.size = 1400;
 	this.thickness = 1;
 
@@ -400,7 +401,7 @@ Spirograph.prototype.SetWheelSize = function (wheel, delta)
 Spirograph.prototype.SetWheelRate = function (wheel, delta)
 {
     this.wheel_rates[wheel] += delta; 
-	document.getElementById("wheelRate_change" + wheel).value = spirograph.wheel_rates[wheel];
+	document.getElementById("wheelRate_change" + wheel).value = this.wheel_rates[wheel];
 }
 //-------------------------------------------------------------------------------------------------
 // Update a wheel's phase
@@ -408,7 +409,10 @@ Spirograph.prototype.SetWheelRate = function (wheel, delta)
 Spirograph.prototype.SetWheelPhase = function (wheel, delta)
 {
 	this.wheel_phases[wheel] += delta;
-	document.getElementById("wheelPhase_change" + wheel).value = spirograph.wheel_rates[wheel];
+	if(this.wheel_phases[wheel] <= max_wheel_ph)
+	
+	document.getElementById("wheelPhase_change" + wheel).value = this.wheel_phases[wheel];
+	
 	
 }
 //-------------------------------------------------------------------------------------------------
@@ -1581,7 +1585,7 @@ input[type=checkbox] {
 							<li class="inner">
 
 								<button type="button" onclick="Example()">Example</button>
-								<button type="button" onclick="Randomise()">Randomise</button>
+								<!--button type="button" onclick="Randomise()">Randomise</button-->
 								<button type="button" onclick="MakeSymmetrical()">Make
 									symmetrical</button>
 								<button type="button" onclick="StartAnimation()">Phase Animate</button>
