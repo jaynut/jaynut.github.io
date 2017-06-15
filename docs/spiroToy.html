@@ -98,9 +98,16 @@ Spirograph.prototype.Copy = function (spirograph)
 
 Spirograph.prototype.createBridges = function(){
 
+if(polarize){}
+else{}
+
 
 
 }
+
+
+
+
 
 //-------------------------------------------------------------------------------------------------
 // Draw the spirograph
@@ -111,6 +118,10 @@ Spirograph.prototype.Draw = function (element_name)
 	var points = []; //points array for svg-ing
 	var segCounter = 0; //points indexing
 	var quad = [];
+	var x;
+	var y;
+	var radius;
+	var phases;
     if (element != null)
     {
         radius = 0;
@@ -271,17 +282,7 @@ Spirograph.prototype.Draw = function (element_name)
     }
 }
 
-<!-- EXPERIMENTAL SECTION -->
 
-function Spirograph.prototype.pointDef(){
-
-
-
-
-
-
-
-}
 
 
 
